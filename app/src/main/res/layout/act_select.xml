@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/blue"
+        android:background="@drawable/round_text"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/green"
+        android:background="@drawable/round_text"
+        android:backgroundTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_text"
+        android:backgroundTint="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blue"
+        android:layout_marginTop="10dp"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_text"
+        android:backgroundTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/green"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="오늘의 활동"
+        android:textColor="@color/black"
+        android:background="@drawable/round_text"
+        android:backgroundTint="@color/cream"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/cafebtn"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="@color/white"
+                android:foreground="@drawable/cafeicon"
+                android:foregroundGravity="fill"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="140dp" />
+
+            <ImageButton
+                android:id="@+id/parkbtn"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="@color/white"
+                android:foreground="@drawable/park"
+                android:foregroundGravity="fill"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="140dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:text="카페"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="공원"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/themebtn"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="@color/white"
+                android:foreground="@drawable/theme"
+                android:foregroundGravity="fill"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="140dp" />
+
+            <ImageButton
+                android:id="@+id/landmarkbtn"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/round_text"
+                android:backgroundTint="@color/white"
+                android:foreground="@drawable/landmark3"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="140dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:text="테마파크"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="관광지"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
