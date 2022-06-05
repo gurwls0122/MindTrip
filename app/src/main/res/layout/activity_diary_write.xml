@@ -44,29 +44,31 @@
         <TextView
             android:id="@+id/selected_date"
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:layout_height="wrap_content"
             android:text="select date"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
             android:layout_gravity="center|start"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/diary_addimgbtn"
+        <ImageButton
+            android:id="@+id/addphotobtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:text="@string/photo"/>
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/diary_stylebtn"
+        <ImageButton
+            android:id="@+id/stylebtn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:text="@string/diary_style"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_style_24"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+
         <!--
         <DatePicker
             android:layout_width="wrap_content"
