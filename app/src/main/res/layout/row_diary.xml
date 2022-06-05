@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="330dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:text="일기 제목"/>
+                android:text="일기 제목" />
 
         </RelativeLayout>
 
