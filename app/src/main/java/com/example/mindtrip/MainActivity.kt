@@ -1,5 +1,6 @@
 package com.example.mindtrip
 
+import android.app.Activity
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActSelectBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
-
 
     }
 
@@ -44,19 +44,11 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         with(binding) {
             cafebtn.setOnClickListener {
-                val gmmIntentUri = Uri.parse("geo:0,0?q=카페")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-
-                startActivity(mapIntent)
+//                val gmmIntentUri = Uri.parse("geo:0,0?q=카페")
+//                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                val intent = Intent(this@MainActivity,MapActivity::class.java)
+                startActivity(intent)
 //                val intent = getIntent()
-                val action = mapIntent.getAction()
-                val type = mapIntent.getType()
-
-                if (Intent.ACTION_SEND.equals(action) && type != null) {
-                    if ("text/plain".equals(type)) {
-                        handleSendText(mapIntent); // Handle text being sent
-                    }
-                }
             }
             parkbtn.setOnClickListener {
                 val gmmIntentUri = Uri.parse("geo:0,0?q=공원")
