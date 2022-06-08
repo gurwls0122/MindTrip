@@ -30,6 +30,7 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.io.PrintStream
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -42,6 +43,7 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
     var mLongitude = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.map)
         val spinnerCari = findViewById<Spinner>(R.id.spnCari)
@@ -77,6 +79,7 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
 
     @SuppressLint("MissingPermission")
     private fun initMap(){
+
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
@@ -225,13 +228,16 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
                 .setTitle(marker.title.toString())
 
             builder.apply {
-                setPositiveButton("아니요") { dialog, id ->
+                setPositiveButton("예") { dialog, id ->
                     val selectedId = id
+                    writeFile(marker.title.toString())
+                   // Log.d("TAG", marker.title.toString())
+                    marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
 
                 }
-                setNegativeButton("네") { dialog, id ->
+                setNegativeButton("아니요") { dialog, id ->
                     val selectedId = id
-                    Log.d("TAG", marker.title.toString())
+
                 }
             }
             val dialog: AlertDialog? = builder.create()
@@ -239,6 +245,29 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
             dialog!!.show()
         }
                 return false
+    }
+
+    private fun writeFile(place:String){
+//        var name:String = ""
+//        when(value){
+//            1->name ="breakfast.txt"
+//            2->name ="lunch.txt"
+//            3->name ="dinner.txt"
+//            4->name ="snack.txt"
+//        }
+//
+        var type = ""
+        val spinnerCari = findViewById<Spinner>(R.id.spnCari)
+        when(spinnerCari.lastVisiblePosition){
+            1-> type = "카페"
+            2-> type = "공원"
+            3-> type = "테마파크"
+            4-> type = "관광지"
+        }
+        val output = PrintStream(openFileOutput("statistics.txt", MODE_APPEND))
+        output.println(place)
+        output.println(type)
+        output.close()
     }
 
 }

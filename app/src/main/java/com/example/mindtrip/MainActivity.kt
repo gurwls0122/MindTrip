@@ -2,96 +2,74 @@ package com.example.mindtrip
 
 import android.app.Activity
 import android.content.Intent
-import android.location.Address
-import android.location.Geocoder
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mindtrip.databinding.ActSelectBinding
+import android.view.View
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mindtrip.databinding.ActHomeBinding
+import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActSelectBinding
+    lateinit var binding: ActHomeBinding
+    val actdata: ArrayList<ActData> = ArrayList()
+    lateinit var adapter: ActAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActSelectBinding.inflate(layoutInflater)
+        binding = ActHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if(initData()){
+            binding.clearbtn.visibility = View.VISIBLE
+            binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            adapter = ActAdapter(actdata)
+            adapter.itemClickListener = object : ActAdapter.OnItemClickListener {
+                override fun OnItemClick(data: ActData) {
+//                val intent = Intent(this@MainActivity, MapActivity::class.java)
+//                startActivity(intent)
+
+                }
+            }
+            binding.recyclerView.adapter = adapter
+        }
         init()
 
     }
 
-    fun handleSendText(intent: Intent) {
-        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-        if (sharedText != null) {
-            System.out.println(sharedText);
+    private fun initData():Boolean{
+        try {
+            val scan1 = Scanner(openFileInput("statistics.txt"))
+            readFileScan(scan1, actdata)
+            return true
+        }catch (e:FileNotFoundException){
+            return false
+        }
+    }
+    private fun init() {
 
-            val coder = Geocoder(this);
-            val address: List<Address>
+        with(binding) {
+            addbtn.setOnClickListener {
+                val intent = Intent(this@MainActivity,MapActivity::class.java)
+                startActivity(intent)
+            }
+            clearbtn.setOnClickListener {
+                actdata.clear()
+                binding.recyclerView.adapter?.notifyDataSetChanged()
+                val file = File("/data/data/com.example.mindtrip/files/statistics.txt")
+                file.delete()
+                clearbtn.visibility = View.GONE
 
-            try {
-
-                address = coder.getFromLocationName(sharedText, 5);
-                val location = address.get(0);
-                val lat = location.getLatitude()
-                val lng = location.getLongitude();
-
-            } catch (e: IOException) {
-                e.printStackTrace();
             }
         }
     }
+    fun readFileScan(scan: Scanner,data:ArrayList<ActData>){
+        while (scan.hasNextLine()) {
+            val name = scan.nextLine()
+            val type = scan.nextLine()
+            data.add(ActData(name, type))
 
-    private fun init() {
-        with(binding) {
-            cafebtn.setOnClickListener {
-//                val gmmIntentUri = Uri.parse("geo:0,0?q=카페")
-//                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                val intent = Intent(this@MainActivity,MapActivity::class.java)
-                startActivity(intent)
-//                val intent = getIntent()
-            }
-            parkbtn.setOnClickListener {
-                val gmmIntentUri = Uri.parse("geo:0,0?q=공원")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                startActivity(mapIntent)
-                val intent = getIntent()
-                val action = intent.getAction()
-                val type = intent.getType()
-
-                if (Intent.ACTION_SEND.equals(action) && type != null) {
-                    if ("text/plain".equals(type)) {
-                        handleSendText(intent); // Handle text being sent
-                    }
-                }
-            }
-            themebtn.setOnClickListener {
-                val gmmIntentUri = Uri.parse("geo:0,0?q=테마파크")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                startActivity(mapIntent)
-                val intent = getIntent()
-                val action = intent.getAction()
-                val type = intent.getType()
-
-                if (Intent.ACTION_SEND.equals(action) && type != null) {
-                    if ("text/plain".equals(type)) {
-                        handleSendText(intent); // Handle text being sent
-                    }
-                }
-            }
-            landmarkbtn.setOnClickListener {
-                val gmmIntentUri = Uri.parse("geo:0,0?q=관광지")
-                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-                startActivity(mapIntent)
-                val intent = getIntent()
-                val action = intent.getAction()
-                val type = intent.getType()
-
-                if (Intent.ACTION_SEND.equals(action) && type != null) {
-                    if ("text/plain".equals(type)) {
-                        handleSendText(intent); // Handle text being sent
-                    }
-                }
-            }
         }
     }
 }
