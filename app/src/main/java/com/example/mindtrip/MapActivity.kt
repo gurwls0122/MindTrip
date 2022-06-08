@@ -96,7 +96,7 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
             if (location != null){
                 onLocationChanged(location)
             }else stopProg()
-            locationManager.requestLocationUpdates(provider,2000,0f, this)
+            locationManager.requestLocationUpdates(provider,2000,10f, this)
 
           mGoogleMap!!.setOnMarkerClickListener(this)
 
@@ -111,7 +111,7 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
         mGoogleMap!!.moveCamera(
             CameraUpdateFactory.newLatLng(latLng)
         )
-        //mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
+        mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
         stopProg()
     }
 
@@ -193,12 +193,14 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
                     //BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_pin_drop_24)
                 val lat = hmPlace["lat"]!!.toDouble()
                 val lng = hmPlace["lng"]!!.toDouble()
-                val nama = hmPlace["place_name"]
-                val namaJln = hmPlace["vicinity"]
+                val name = hmPlace["place_name"]
+                val address = hmPlace["vicinity"]
                 val latLng = LatLng(lat,lng)
                 markerOptions.icon(pinDrop)
                 markerOptions.position(latLng)
-                markerOptions.title(nama)
+                markerOptions.title(name)
+                markerOptions.snippet(address)
+
                 mGoogleMap!!.addMarker(markerOptions)
             }
             stopProg()
@@ -214,6 +216,7 @@ class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerCli
         )
         val btn = findViewById<Button>(R.id.btn)
         btn.setOnClickListener {
+
             val builder: AlertDialog.Builder? = this?.let {
                 AlertDialog.Builder(it)
             }
