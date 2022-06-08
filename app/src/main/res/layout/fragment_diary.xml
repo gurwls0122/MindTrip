@@ -32,17 +32,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/writebtn"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/radius"
         android:backgroundTint="@color/white"
         android:elevation="5dp"
+        android:background="@drawable/radius"
         android:text="@string/write_diary"
         tools:ignore="TouchTargetSizeCheck"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/diary_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
