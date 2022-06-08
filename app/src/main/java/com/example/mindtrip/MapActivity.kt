@@ -3,27 +3,28 @@
 package com.example.mindtrip
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.location.Criteria
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.AdapterView
+import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
- import android.location.LocationListener
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -33,7 +34,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-class MapActivity : AppCompatActivity(), LocationListener {
+class MapActivity : AppCompatActivity(), LocationListener, GoogleMap.OnMarkerClickListener {
 
     var mGoogleMap: GoogleMap? = null
     var pBar : ProgressBar? = null
@@ -96,6 +97,9 @@ class MapActivity : AppCompatActivity(), LocationListener {
                 onLocationChanged(location)
             }else stopProg()
             locationManager.requestLocationUpdates(provider,2000,0f, this)
+
+          mGoogleMap!!.setOnMarkerClickListener(this)
+
         }
     }
 
@@ -107,7 +111,7 @@ class MapActivity : AppCompatActivity(), LocationListener {
         mGoogleMap!!.moveCamera(
             CameraUpdateFactory.newLatLng(latLng)
         )
-        mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
+        //mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
         stopProg()
     }
 
@@ -200,4 +204,41 @@ class MapActivity : AppCompatActivity(), LocationListener {
             stopProg()
         }
     }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        val markerName = marker.title
+
+        marker.showInfoWindow()
+        mGoogleMap!!.moveCamera(
+            CameraUpdateFactory.newLatLng(marker.position)
+        )
+        val btn = findViewById<Button>(R.id.btn)
+        btn.setOnClickListener {
+            val builder: AlertDialog.Builder? = this?.let {
+                AlertDialog.Builder(it)
+            }
+
+            builder!!.setMessage("여기에 가고 싶나요?")
+                .setTitle(marker.title.toString())
+
+            builder.apply {
+                setPositiveButton("아니요") { dialog, id ->
+                    val selectedId = id
+
+                }
+                setNegativeButton("네") { dialog, id ->
+                    val selectedId = id
+                    Log.d("TAG", marker.title.toString())
+                }
+            }
+            val dialog: AlertDialog? = builder.create()
+
+            dialog!!.show()
+        }
+                return false
+    }
+
 }
+
+
+
