@@ -2,7 +2,7 @@
     <string name="app_name">MindTrip</string>
     <string name="google_maps_key">AIzaSyBl1cUMCuYATDsZkOAYL_V2M6qznle1fQU</string>
     <string-array name="cari_tempat">
-        <item>-- 활동 --</item>
+        <item>- 오늘의 활동 -</item>
         <item>카페</item>
         <item>공원</item>
         <item>테마파크</item>
