@@ -107,7 +107,6 @@ class DiaryFragment : Fragment() {
             }
         }
 
-
     }
 
 
