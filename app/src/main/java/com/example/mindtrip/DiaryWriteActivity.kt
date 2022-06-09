@@ -5,14 +5,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.widget.DatePicker
-import androidx.fragment.app.Fragment
 import com.example.mindtrip.databinding.ActivityDiaryWriteBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DiaryWriteActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiaryWriteBinding
@@ -39,6 +38,12 @@ class DiaryWriteActivity : AppCompatActivity() {
                     day.text.toString().toInt(), diaryTitle.text.toString(), diaryText.text.toString(), frequency)
                 rdb.child(diaryTitle.text.toString()).setValue(item)
             }
+
+            //println try
+            /*val title = binding.diaryTitle.text.toString()
+            rdb.child(title).child("title").get().addOnSuccessListener {
+                binding.savebtn.setText(it.value.toString())
+            }*/
             finish()
         }
 

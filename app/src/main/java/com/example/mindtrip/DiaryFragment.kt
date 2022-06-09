@@ -63,9 +63,9 @@ class DiaryFragment : Fragment() {
         //edit diary
         mAdapter = DiaryAdapter(option)
         mAdapter.itemClickListener = object : DiaryAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val intent = Intent(requireContext(), DiaryWriteActivity::class.java)
-                intent.putExtra("position", position)
+            override fun onItemClick(position: Int, titlekey:String) {
+                val intent = Intent(requireContext(), DiaryEditActivity::class.java)
+                intent.putExtra("titlekey",titlekey)
                 startActivity(intent)
             }
         }

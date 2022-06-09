@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "342105233176",
+    "firebase_url": "https://mindtrip-f9fcf-default-rtdb.firebaseio.com",
     "project_id": "mindtrip-f9fcf",
     "storage_bucket": "mindtrip-f9fcf.appspot.com"
   },
@@ -10,6 +11,35 @@
         "mobilesdk_app_id": "1:342105233176:android:e3c023a846edb03278f06d",
         "android_client_info": {
           "package_name": "com.example.mindtrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "342105233176-c95cu9v6bbbqdk9g8r9j8d80odug9fv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXHa8yN-8ygrfHhE6pDygkd6HP1MzBbdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "342105233176-c95cu9v6bbbqdk9g8r9j8d80odug9fv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342105233176:android:cda88f5f948bf6e778f06d",
+        "android_client_info": {
+          "package_name": "com.sungrea.myteamproject"
         }
       },
       "oauth_client": [
