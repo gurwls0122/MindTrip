@@ -29,7 +29,8 @@ class DiaryEditActivity : AppCompatActivity() {
         binding.calendarbtn.setOnClickListener {
             showDatePickerDialog()
         }
-        //editData()
+
+        editData()
         deleteData()
 
         binding.backbtn.setOnClickListener {
@@ -39,17 +40,17 @@ class DiaryEditActivity : AppCompatActivity() {
 
     private fun deleteData() {
         binding.deletebtn.setOnClickListener {
-            rdb.child(titlekey.toString()).removeValue()
+            rdb.child(titlekey).removeValue()
             finish()
         }
 
     }
 
-    /*private fun editData() {
+    private fun editData() {
         binding.editbtn.setOnClickListener {
-            println("수정")
+            println("수정 시작")
         }
-    }*/
+    }
 
     private fun initData() {
         titlekey = intent.getStringExtra("titlekey").toString()
