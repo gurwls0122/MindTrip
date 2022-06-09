@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var mapFragment = MapFragment()
     private var phoneFragment = PhoneFragment()
     private var diaryFragment =DiaryFragment()
+    private var count:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +24,18 @@ class MainActivity : AppCompatActivity() {
         initNavi()
     }
 
+    override fun onStart() {
+        super.onStart()
+        if(count==0) {
+            val dialog = CustomDialog(this)
+            dialog.showDialog()
+            count++
+        }
+    }
+
     private fun initNavi() {
         val frag = supportFragmentManager.beginTransaction()
-        frag.replace(R.id.fragment_container, mapFragment, "map").commit()
+        frag.replace(R.id.fragment_container, homeFragment, "home").commit()
 
         binding.mainNavi.run{
             setOnItemSelectedListener {

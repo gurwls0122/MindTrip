@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MindTrip</string>
+    <string name="home_kr">홈</string>
+    <string name="call_kr">전화</string>
+    <string name="location_kr">활동추천</string>
+    <string name="diary_kr">다이어리</string>
+    <string name="write_diary">일기쓰기</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="diary_style">스타일</string>
+    <string name="photo">사진</string>
+    <string name="save">저장</string>
 </resources>
