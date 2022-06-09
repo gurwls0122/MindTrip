@@ -49,6 +49,10 @@ class DiaryEditActivity : AppCompatActivity() {
     private fun editData() {
         binding.editbtn.setOnClickListener {
             println("수정 시작")
+            titlekey = intent.getStringExtra("titlekey").toString()
+            val title = titlekey
+            rdb.child(title).child("content").setValue(binding.diaryText.toString())
+            initData()
         }
     }
 
@@ -86,12 +90,15 @@ class DiaryEditActivity : AppCompatActivity() {
     }
 
     private fun showDatePickerDialog(){
+        titlekey = intent.getStringExtra("titlekey").toString()
+        val title = titlekey
         var datePicker = DatePickerDialog(
             this, object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    binding.year.text = year.toString()
-                    binding.month.text = (month+1).toString()
-                    binding.day.text = dayOfMonth.toString()
+                    rdb.child(title).child("year").setValue(year.toString())
+                    rdb.child(title).child("month").setValue((month+1).toString())
+                    rdb.child(title).child("day").setValue(dayOfMonth.toString())
+                    initData()
                 }
             },cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH))

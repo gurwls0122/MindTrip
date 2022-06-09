@@ -41,8 +41,6 @@ class DiaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //spinner
-        initSpinner()
         initRecyclerview()
 
         //write new diary
@@ -79,35 +77,6 @@ class DiaryFragment : Fragment() {
         mAdapter.startListening()
     }
 
-    private fun initSpinner() {
-        val adapter2 = ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_dropdown_item,yearItems)
-        val adapter3 = ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_dropdown_item,monthItems)
-
-        binding.apply {
-            yearSpinner.adapter = adapter2
-            yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-                    val yearkey = parent?.getItemAtPosition(position).toString()
-                    println(yearkey)
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-
-                }
-            }
-            monthSpinner.adapter = adapter3
-            monthSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-                    val monthkey=parent?.getItemAtPosition(position).toString()
-                    println(monthkey)
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
-            }
-        }
-
-    }
 
 
 
