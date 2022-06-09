@@ -18,16 +18,16 @@ class DiaryEditActivity : AppCompatActivity() {
         setContentView(binding.root)
         initData()
 
-        binding.savebtn.setOnClickListener {
+        /*binding.savebtn.setOnClickListener {
             binding.apply {
                 val beforedata = editdata[position!!.toInt()]
-                val afterdata = beforedata.copy(year.text.toString(),month.text.toString(),
-                    day.text.toString(), diaryTitle.text.toString(), diaryText.text.toString())
+                val afterdata = beforedata.copy(year.text,month.text,
+                    day.text, diaryTitle.text.toString(), diaryText.text.toString())
             }
             println("data")
             println(editdata)
             finish()
-        }
+        }*/
 
         binding.backbtn.setOnClickListener {
             finish()
@@ -37,9 +37,9 @@ class DiaryEditActivity : AppCompatActivity() {
     private fun initData() {
         if (position != null) {
             var data = editdata[position!!.toInt()]
-            binding.year.text = data.year
+            /*binding.year.text = data.year
             binding.month.text = data.month
-            binding.day.text = data.day
+            binding.day.text = data.day*/
         }
     }
 }
