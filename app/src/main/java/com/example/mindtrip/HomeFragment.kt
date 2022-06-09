@@ -1,37 +1,48 @@
 package com.example.mindtrip
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mindtrip.databinding.ActHomeBinding
+import com.google.android.material.textfield.TextInputEditText
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActHomeBinding
+class HomeFragment :Fragment(){
+    private lateinit var binding: ActHomeBinding
     val actdata: ArrayList<ActData> = ArrayList()
     lateinit var adapter: ActAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = ActHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         init()
 
     }
-
     private fun initData():Boolean{
         try {
-            val scan1 = Scanner(openFileInput("statistics.txt"))
+            val scan1 = Scanner(activity?.openFileInput("statistics.txt"))
             readFileScan(scan1, actdata)
             return true
-        }catch (e:FileNotFoundException){
+        }catch (e: FileNotFoundException){
             return false
         }
     }
@@ -43,12 +54,12 @@ class MainActivity : AppCompatActivity() {
             binding.clearbtn.visibility = View.VISIBLE
             binding.refreshbtn.visibility = View.VISIBLE
             binding.refreshbtn2.visibility = View.GONE
-            binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            binding.recyclerView.layoutManager = LinearLayoutManager(this@HomeFragment.context, LinearLayoutManager.VERTICAL, false)
             adapter = ActAdapter(actdata)
             adapter.itemClickListener = object : ActAdapter.OnItemClickListener {
                 override fun OnItemClick(data: ActData) {
 
-                    val builder = AlertDialog.Builder(this@MainActivity)
+                    val builder = AlertDialog.Builder(this@HomeFragment.context)
                     builder!!.setMessage("Google Maps에 볼까요?")
                         .setTitle(data.name)
 
@@ -69,7 +80,6 @@ class MainActivity : AppCompatActivity() {
 
                     dialog!!.show()
 
-
                 }
             }
             binding.recyclerView.adapter = adapter
@@ -83,11 +93,11 @@ class MainActivity : AppCompatActivity() {
 
         with(binding) {
             addbtn.setOnClickListener {
-                val intent = Intent(this@MainActivity,MapActivity::class.java)
+                val intent = Intent(this@HomeFragment.context,MapActivity::class.java)
                 startActivity(intent)
             }
             clearbtn.setOnClickListener {
-                val builder = AlertDialog.Builder(this@MainActivity)
+                val builder = AlertDialog.Builder(this@HomeFragment.context)
                 builder!!.setMessage("활동 데이터 채울까요?")
                     .setTitle("채우기")
 
@@ -130,4 +140,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 }
