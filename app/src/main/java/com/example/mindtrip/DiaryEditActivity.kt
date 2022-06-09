@@ -38,8 +38,10 @@ class DiaryEditActivity : AppCompatActivity() {
     }
 
     private fun deleteData() {
-        rdb.child(titlekey.toString()).removeValue()
-        finish()
+        binding.deletebtn.setOnClickListener {
+            rdb.child(titlekey.toString()).removeValue()
+            finish()
+        }
 
     }
 
