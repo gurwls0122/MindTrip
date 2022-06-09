@@ -73,6 +73,7 @@ class DiaryFragment : Fragment() {
             diaryRecyclerview.layoutManager = layoutManager
             diaryRecyclerview.adapter = mAdapter
         }
+        mAdapter.startListening()
     }
 
     private fun initSpinner() {
