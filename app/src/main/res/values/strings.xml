@@ -9,4 +9,11 @@
     <string name="diary_style">스타일</string>
     <string name="photo">사진</string>
     <string name="save">저장</string>
+    <string-array name="cari_tempat">
+        <item>- 오늘의 활동 -</item>
+        <item>카페</item>
+        <item>공원</item>
+        <item>테마파크</item>
+        <item>관광지</item>
+    </string-array>
 </resources>
