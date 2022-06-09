@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_margin="15dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="5dp">
+        app:cardBackgroundColor="@color/mainblue_100">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,18 +21,25 @@
 
             <TextView
                 android:id="@+id/diary_date"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanumsquarer"
                 android:text="05.31"/>
 
             <TextView
                 android:id="@+id/diary_title"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:fontFamily="@font/nanumsquareb"
                 android:text="일기 제목" />
 
         </RelativeLayout>

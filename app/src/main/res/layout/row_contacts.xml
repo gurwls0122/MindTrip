@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:background="#84A8C5"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nanumsquarer"
+        android:background="@color/mainblue_100"
         android:padding="12dp" />
 
     <TextView
@@ -19,6 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:background="#84A8C5"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nanumsquarer"
+        android:background="@color/mainblue_100"
         android:padding="12dp" />
 </LinearLayout>

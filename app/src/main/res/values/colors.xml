@@ -16,5 +16,11 @@
     <color name="brown">#B25A10</color>
     <color name="yes">#00CD00</color>
     <color name="no">#FF0000</color>
+    <color name="mainblue_200">#0069FF</color>
+    <color name="mainblue_100">#4D96FF</color>
+    <color name="mainblue_60">#94C0FF</color>
+    <color name="mainblue_20">#DBEAFF</color>
+    <color name="subgreen_100">#8ADA5D</color>
+    <color name="subgreen_200">#4DC509</color>
 
 </resources>
