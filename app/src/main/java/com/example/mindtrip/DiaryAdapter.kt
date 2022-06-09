@@ -12,14 +12,14 @@ class DiaryAdapter(options: FirebaseRecyclerOptions<DiaryData>):
     FirebaseRecyclerAdapter<DiaryData, DiaryAdapter.ViewHolder>(options)  {
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, titlekey: String)
     }
 
     var itemClickListener:OnItemClickListener?= null
     inner class ViewHolder(val binding: RowDiaryBinding): RecyclerView.ViewHolder(binding.root){
         init {
             binding.root.setOnClickListener {
-                itemClickListener!!.onItemClick(bindingAdapterPosition)
+                itemClickListener!!.onItemClick(bindingAdapterPosition, binding.diaryTitle.toString())
             }
         }
     }
