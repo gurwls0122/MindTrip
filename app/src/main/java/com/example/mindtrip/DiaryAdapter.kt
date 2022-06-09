@@ -1,5 +1,6 @@
 package com.example.mindtrip
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,7 @@ class DiaryAdapter(options: FirebaseRecyclerOptions<DiaryData>):
         holder.binding.apply {
             diaryDate.text = model.month.toString() + "/"+ model.day.toString()
             diaryTitle.text = model.title
+            Log.i("TAG", model.toString())
         }
 
     }

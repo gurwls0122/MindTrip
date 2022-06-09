@@ -2,6 +2,7 @@ package com.example.mindtrip
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 
 class DiaryFragment : Fragment() {
     lateinit var binding: FragmentDiaryBinding
-    lateinit var adapter: DiaryAdapter
+    lateinit var mAdapter: DiaryAdapter
     lateinit var layoutManager: LinearLayoutManager
     lateinit var rdb: DatabaseReference
     val monthItems = arrayOf("1","2","3","4","5","6","7","8","9","10","11","12")
@@ -52,13 +53,16 @@ class DiaryFragment : Fragment() {
     private fun initRecyclerview() {
         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         rdb = Firebase.database.getReference("Diary/Contents")
+        rdb.get().addOnSuccessListener {
+            Log.i("TAG", it.value.toString())
+        }
         val query = rdb.limitToLast(50)
         val option = FirebaseRecyclerOptions.Builder<DiaryData>()
             .setQuery(query, DiaryData::class.java).build()
 
         //edit diary
-        adapter = DiaryAdapter(option)
-        adapter.itemClickListener = object : DiaryAdapter.OnItemClickListener {
+        mAdapter = DiaryAdapter(option)
+        mAdapter.itemClickListener = object : DiaryAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(requireContext(), DiaryWriteActivity::class.java)
                 intent.putExtra("position", position)
@@ -67,7 +71,7 @@ class DiaryFragment : Fragment() {
         }
         binding.apply {
             diaryRecyclerview.layoutManager = layoutManager
-            diaryRecyclerview.adapter = adapter
+            diaryRecyclerview.adapter = mAdapter
         }
     }
 
