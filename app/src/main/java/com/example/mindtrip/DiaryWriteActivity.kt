@@ -8,31 +8,37 @@ import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import com.example.dmindtrip.databinding.ActivityDiaryWriteBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
 class DiaryWriteActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiaryWriteBinding
     val cal = Calendar.getInstance()
-    val newdata:ArrayList<DiaryData> = ArrayList()
+    lateinit var rdb: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDiaryWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //날짜 선택
         binding.calendarbtn.setOnClickListener {
             showDatePickerDialog()
         }
 
+        //저장
         binding.savebtn.setOnClickListener {
             val frequency = frequency()
+            rdb = Firebase.database.getReference("Diary/Contents")
+
             binding.apply {
-                newdata.add(DiaryData(year.text.toString(),month.text.toString(),
-                day.text.toString(), diaryTitle.text.toString(), diaryText.text.toString(), frequency))
+                val item = DiaryData(year.text.toString().toInt(),month.text.toString().toInt(),
+                    day.text.toString().toInt(), diaryTitle.text.toString(), diaryText.text.toString(), frequency)
+                rdb.child(diaryTitle.text.toString()).setValue(item)
             }
-            println("data")
-            println(newdata)
             finish()
         }
 
@@ -56,7 +62,7 @@ class DiaryWriteActivity : AppCompatActivity() {
     }
 
     private fun frequency(): Int{
-        val word: Array<String> = arrayOf("나","자신","나를","우울", "항상","아무것도","완전히")
+        val word: Array<String> = arrayOf("나","자신","저","나를","우울", "항상","아무것도","완전히")
         val text = binding.diaryText.text.toString()
         var count = 0
 
