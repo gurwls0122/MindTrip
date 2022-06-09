@@ -13,5 +13,8 @@
     <color name="red">#FFDCDC</color>
     <color name="grey">#CCCCCC</color>
     <color name="cream">#F5F3DD</color>
+    <color name="brown">#B25A10</color>
+    <color name="yes">#00CD00</color>
+    <color name="no">#FF0000</color>
 
 </resources>
