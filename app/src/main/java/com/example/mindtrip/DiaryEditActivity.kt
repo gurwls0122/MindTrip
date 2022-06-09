@@ -1,5 +1,8 @@
 package com.example.mindtrip
 
+
+import java.util.*
+import kotlin.collections.ArrayList
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +12,11 @@ import com.example.mindtrip.databinding.ActivityDiaryEditBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
 class DiaryEditActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiaryEditBinding
     val cal = Calendar.getInstance()
-    var titlekey = intent.getStringExtra("titlekey")
+    lateinit var titlekey:String
     lateinit var rdb: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,7 @@ class DiaryEditActivity : AppCompatActivity() {
     }*/
 
     private fun initData() {
+        titlekey = intent.getStringExtra("titlekey").toString()
         val title = titlekey
         if (title!=null){
             rdb.child(title).child("title").get().addOnSuccessListener {

@@ -15,6 +15,7 @@ import com.example.mindtrip.DiaryData
 import com.example.mindtrip.DiaryWriteActivity
 import com.example.mindtrip.databinding.FragmentDiaryBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,7 @@ class DiaryFragment : Fragment() {
     lateinit var mAdapter: DiaryAdapter
     lateinit var layoutManager: LinearLayoutManager
     lateinit var rdb: DatabaseReference
+    lateinit var dataSnapshot: DataSnapshot
     val monthItems = arrayOf("1","2","3","4","5","6","7","8","9","10","11","12")
     val yearItems = arrayOf("2018","2019","2020","2021","2022")
 
@@ -63,9 +65,10 @@ class DiaryFragment : Fragment() {
         //edit diary
         mAdapter = DiaryAdapter(option)
         mAdapter.itemClickListener = object : DiaryAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int, titlekey:String) {
+            override fun onItemClick(position: Int, titlekey:String){
                 val intent = Intent(requireContext(), DiaryEditActivity::class.java)
-                intent.putExtra("titlekey",titlekey)
+                Log.i("TAG@", mAdapter.getItem(position).title)
+                intent.putExtra("titlekey",mAdapter.getItem(position).title)
                 startActivity(intent)
             }
         }
