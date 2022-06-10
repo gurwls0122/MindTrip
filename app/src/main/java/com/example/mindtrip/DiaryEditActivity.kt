@@ -53,6 +53,7 @@ class DiaryEditActivity : AppCompatActivity() {
             val title = titlekey
             rdb.child(title).child("content").setValue(binding.diaryText.text.toString())
             initData()
+            finish()
         }
     }
 
