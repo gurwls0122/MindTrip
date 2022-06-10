@@ -67,7 +67,7 @@ class DiaryWriteActivity : AppCompatActivity() {
     }
 
     private fun frequency(): Int{
-        val word: Array<String> = arrayOf("나","자신","저","나를","우울", "항상","아무것도","완전히")
+        val word: Array<String> = arrayOf("나","나는","나를","나의","자신","저","저는","제가","우울", "항상","아무것도","완전히","영원히","전혀")
         val text = binding.diaryText.text.toString()
         var count = 0
 

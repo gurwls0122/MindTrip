@@ -15,10 +15,8 @@
         android:gravity="center"
         android:text="활동"
         android:textColor="@color/black"
-        android:background="@drawable/round_text"
-        android:backgroundTint="@color/cream"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:textSize="30dp"
+        android:fontFamily="@font/nanumsquareb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +37,9 @@
             android:layout_height="80dp"
             android:text="오늘 활동 추가"
             android:textStyle="bold"
-            android:textSize="25sp"
-            android:backgroundTint="@color/brown"/>
+            android:textSize="20dp"
+            android:fontFamily="@font/nanumsquarer"
+            android:backgroundTint="@color/mainblue_100"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -54,9 +53,8 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:textColor="@color/white"
-                android:textSize="20sp"
                 android:text="새로고침"
-                android:textStyle="bold"
+                android:fontFamily="@font/nanumsquarer"
                 android:visibility="gone"
                 android:backgroundTint="@color/yes"
                 />
@@ -65,20 +63,18 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:textColor="@color/white"
-                android:textSize="20sp"
                 android:text="새로고침"
-                android:textStyle="bold"
-                android:backgroundTint="@color/yes"
+                android:fontFamily="@font/nanumsquarer"
+                android:backgroundTint="@color/mainblue_100"
                 />
             <Button
                 android:id="@+id/clearbtn"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="@color/mainblue_100"
                 android:text="채우기"
-                android:textStyle="bold"
-                android:backgroundTint="@color/no"
+                android:fontFamily="@font/nanumsquarer"
+                android:backgroundTint="@color/white"
                 />
         </LinearLayout>
 

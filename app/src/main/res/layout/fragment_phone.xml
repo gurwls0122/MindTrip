@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/image" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,15 +25,19 @@
         android:layout_marginEnd="52dp"
         android:text="전화 알람"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/radius"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="12dp"
         android:text="연락처"
+        android:background="@drawable/radius"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

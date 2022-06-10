@@ -51,8 +51,9 @@ class DiaryEditActivity : AppCompatActivity() {
             println("수정 시작")
             titlekey = intent.getStringExtra("titlekey").toString()
             val title = titlekey
-            rdb.child(title).child("content").setValue(binding.diaryText.toString())
+            rdb.child(title).child("content").setValue(binding.diaryText.text.toString())
             initData()
+            finish()
         }
     }
 
@@ -95,9 +96,9 @@ class DiaryEditActivity : AppCompatActivity() {
         var datePicker = DatePickerDialog(
             this, object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    rdb.child(title).child("year").setValue(year.toString())
-                    rdb.child(title).child("month").setValue((month+1).toString())
-                    rdb.child(title).child("day").setValue(dayOfMonth.toString())
+                    rdb.child(title).child("year").setValue(year)
+                    rdb.child(title).child("month").setValue(month+1)
+                    rdb.child(title).child("day").setValue(dayOfMonth)
                     initData()
                 }
             },cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
@@ -106,7 +107,7 @@ class DiaryEditActivity : AppCompatActivity() {
     }
 
     private fun frequency(): Int{
-        val word: Array<String> = arrayOf("나","자신","저","나를","우울", "항상","아무것도","완전히")
+        val word: Array<String> = arrayOf("나","나는","나를","나의","자신","저","저는","제가","우울", "항상","아무것도","완전히","영원히","전혀")
         val text = binding.diaryText.text.toString()
         var count = 0
 
